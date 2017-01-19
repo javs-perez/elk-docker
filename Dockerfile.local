@@ -165,4 +165,6 @@ RUN chmod +x /usr/local/bin/start.sh
 EXPOSE 5601 9200 9300 5044
 VOLUME /var/lib/elasticsearch
 
-CMD [ "/usr/local/bin/start.sh" ]
+# CMD [ "/usr/local/bin/start.sh" ]
+RUN sysctl -w vm.max_map_count=262144
+RUN sudo docker run -p 5601:5601 -p 9200:9200 -p 5044:5044 -it --name elk sebp/elk
